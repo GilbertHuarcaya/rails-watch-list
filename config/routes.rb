@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  resources :movies
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :lists do
+    resources :bookmarks, only: [:new, :create]
+    delete "bookmarks/:id", to: "bookmarks#destroy", as: "destroy_bookmark"
+  end
 end
