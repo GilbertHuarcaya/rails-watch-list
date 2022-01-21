@@ -8,28 +8,10 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
-    @list = List.find(params[:list_id])
-    @movie = Movie.find(@bookmark[:movie_id])
     @bookmark.list = @list
-    @bookmark.movie = @movie
-    @bookmark.save
-    respond_to do |format|
-      if @bookmark.save
-        format.html { redirect_to list_path(@list), notice: "bookmark was successfully created." }
-        format.json { render :show, status: :ok, location: @bookmark }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @bookmark.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:notice] = @bookmark.errors.full_messages.to_sentence unless @bookmark.save
+    redirect_to list_path(@list)
   end
-
-  # def create
-  #   @bookmark = Bookmark.new(bookmark_params)
-  #   @bookmark.list = @list
-  #   flash[:notice] = @bookmark.errors.full_messages.to_sentence unless @bookmark.save
-  #   redirect_to list_path(@list)
-  # end
 
   def destroy
     @bookmark.destroy

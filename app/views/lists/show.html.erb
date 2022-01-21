@@ -19,7 +19,7 @@
       <img src=<%= bookmark.movie[:poster_url] %> alt=""<%= bookmark.movie[:title] %>>
       <div class="card-trip-infos">
         <div>
-          <h2><%= bookmark.movie[:title] %> - <%= bookmark.movie[:rating] %></h2>
+          <h2><%= bookmark.movie[:title] %> - <%= bookmark.movie[:rating] %> <i class="fas fa-star star-yellow"></i></h2>
           <p><%= bookmark.movie[:overview] %></p>
           <div>
             <i class="fas fa-quote-left mr-2"></i><small class="flex-grow-1"><%= bookmark.comment %></small>
