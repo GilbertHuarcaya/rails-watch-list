@@ -1,13 +1,14 @@
-
-<%= simple_form_for(@list) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Create a new list</h3>
+        <%= simple_form_for @list do |f| %>
+          <%= f.input :name, placeholder: 'For Example Drama' %>
+          <%= f.input :photo %>
+          <%= f.submit class: 'btn btn-gradient' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>
